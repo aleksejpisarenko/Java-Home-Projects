@@ -4,13 +4,11 @@ import java.io.*;
 import java.util.Scanner;
 
 public class FileReadWrite {
-    public static void main(String[] args) throws InterruptedException {
-
+    public static void main(String[] args)  {
         System.out.println("ENTER 'R' TO READ A FILE, 'W' TO WRITE TO FILE OR 'E' TO EXIT THE PROGRAM");
         Scanner scanner = new Scanner(System.in);
         String line = scanner.nextLine();
         line = line.toLowerCase();
-
 
         while(!line.equals("w") && !line.equals("r")) {
             if(line.equals("e")) {
@@ -25,7 +23,7 @@ public class FileReadWrite {
         defineMethod(line);
     }
 
-    private static void defineMethod(String line) throws InterruptedException {
+    private static void defineMethod(String line)  {
         if(line.equals("r")) {
             read();
         } else {
@@ -33,7 +31,7 @@ public class FileReadWrite {
         }
     }
 
-    private static void write() throws InterruptedException {
+    private static void write()  {
         System.out.println("NOW CHOOSE WHAT YOU WANT TO DO");
         System.out.println("IF YOU WANT TO FULLY REWRITE FILE TYPE 'F'");
         System.out.println("IF YOU WANT TO APPEND TO FILE TYPE 'A'");
@@ -60,7 +58,7 @@ public class FileReadWrite {
 
                 bufferedWriter.write(STR." \n\{message}");
             } catch (IOException e) {
-                System.out.println("Something went wrong : " + e);
+                System.out.println(STR."Something went wrong : \{e}");
             }
 
             System.out.println();
@@ -75,7 +73,7 @@ public class FileReadWrite {
 
                 bufferedWriter.write(message);
             } catch (IOException e) {
-                System.out.println("Something went wrong : " + e);
+                System.out.println(STR."Something went wrong : \{e}");
             }
 
             System.out.println();
@@ -83,7 +81,7 @@ public class FileReadWrite {
         }
     }
 
-    private static void read() throws InterruptedException {
+    private static void read() {
         System.out.println("PLEASE ENTER PATH");
         Scanner scanner = new Scanner(System.in);
         String path = scanner.nextLine();
@@ -91,7 +89,7 @@ public class FileReadWrite {
         path = path.replace("\u202A", "");
         File file = new File(path);
 
-        try(Scanner reader = new Scanner(file);) {
+        try(Scanner reader = new Scanner(file)) {
             StringBuilder line = new StringBuilder();
 
             while(reader.hasNextLine()) {
